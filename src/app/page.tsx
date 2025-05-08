@@ -9,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     if (screen === 'loading') {
-      const timer = setTimeout(() => setScreen('onboarding'), 3000000);
+      const timer = setTimeout(() => setScreen('onboarding'), 1000);
       return () => clearTimeout(timer);
     }
   }, [screen]);
