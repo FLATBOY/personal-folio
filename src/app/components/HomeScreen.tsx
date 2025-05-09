@@ -1,7 +1,7 @@
 // src/app/components/HomeScreen.tsx
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Window from "./Window";
 import NavBar from "./NavBar";
 import DesktopIcon from "./desktopIcon";
