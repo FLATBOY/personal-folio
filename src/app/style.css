@@ -10,3 +10,49 @@
   .animate-bar-loader {
     animation: bar-loader 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   }
+
+  .window-xp {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 0 0 4px #1a73e8, 0 2px 16px rgba(0,0,0,0.2);
+  background: #f9f7ed;
+  border: 2px solid #1976d2;
+}
+
+.window-xp-title-bar {
+  background: linear-gradient(90deg, #1a73e8 0%, #2196f3 100%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 2rem;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.window-xp-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.window-xp-btn {
+  background: linear-gradient(180deg, #ff8a65 0%, #ff7043 100%);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.window-xp-close {
+  background: linear-gradient(180deg, #ff5252 0%, #ff1744 100%);
+}
+
+.window-xp-content {
+  background: #f9f7ed;
+  min-height: 300px;
+  padding: 24px;
+}

@@ -1,32 +1,57 @@
+// src/app/components/Window.tsx
 import Draggable from "react-draggable";
-import { ReactNode } from "react";
+import React, { ReactNode, forwardRef } from "react";
 
 interface WindowProps {
   title: string;
   children: ReactNode;
   onClose?: () => void;
+  windowId: string;
+  onMinimize?: () => void;
+  onMaximize?: () => void;
+  isActive?: boolean;
   defaultPosition?: { x: number; y: number };
 }
 
-export default function Window({ title, children, onClose, defaultPosition = { x: 0, y: 0 } }: WindowProps) {
-  return (
-    <Draggable defaultPosition={defaultPosition} handle=".window-handle">
-      <div className="absolute bg-white rounded-lg shadow-lg overflow-hidden min-w-[400px] min-h-[300px]">
-        <div className="window-handle bg-gray-200 px-4 py-2 flex justify-between items-center cursor-move">
-          <span className="font-medium">{title}</span>
-          {onClose && (
-            <button
-              onClick={onClose}
-              className="w-6 h-6 flex items-center justify-center hover:bg-gray-300 rounded"
-            >
-              ×
-            </button>
-          )}
+const Window = forwardRef<HTMLDivElement, WindowProps>(
+  (
+    {
+      title,
+      children,
+      onClose,
+      onMinimize,
+      onMaximize,
+      isActive,
+      defaultPosition,
+    },
+    ref
+  ) => (
+    // <Draggable nodeRef={ref as React.RefObject<HTMLDivElement>} defaultPosition={defaultPosition}>
+      <Draggable defaultPosition={defaultPosition}>
+      <div className={`window-xp ${isActive ? "active" : ""}`}>
+        <div className="window-xp-title-bar">
+          <span className="window-xp-title">{title}</span>
+          <div className="window-xp-controls">
+            {onMinimize && (
+              <button onClick={onMinimize} className="window-xp-btn">_</button>
+            )}
+            {onMaximize && (
+              <button onClick={onMaximize} className="window-xp-btn">[ ]</button>
+            )}
+            {onClose && (
+              <button onClick={onClose} className="window-xp-btn window-xp-close">
+                <img src="/close.png" alt="close" />
+              </button>
+            )}
+          </div>
         </div>
-        <div className="p-4">
+        <div className="window-xp-content">
           {children}
         </div>
       </div>
     </Draggable>
-  );
-} 
+  )
+);
+
+Window.displayName = "Window";
+export default Window;

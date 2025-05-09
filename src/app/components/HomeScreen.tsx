@@ -1,7 +1,12 @@
+// src/app/components/HomeScreen.tsx
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Window from "./Window";
+import NavBar from "./NavBar";
+import DesktopIcon from "./desktopIcon";
+import AboutMe from "./aboutMe";
+import Projects from "./Projects";  
 
 interface WindowState {
   id: string;
@@ -12,12 +17,30 @@ interface WindowState {
 
 export default function HomeScreen() {
   const [windows, setWindows] = useState<WindowState[]>([]);
+  const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
+  const [icons, setIcons] = useState([
+    {
+      id: 'cv',
+      icon: '/assets/icons/file_doc.png',
+      label: 'CV-Resume',
+      position: { x: 40, y: 40 }
+    },
+    {
+      id: 'projects',
+      icon: '/assets/icons/folder_programs.png',
+      label: 'Projects',
+      position: { x: 40, y: 120 }
+    },
+    {
+      id: 'about',
+      icon: '/assets/icons/people.png',
+      label: 'About Me',
+      position: { x: 40, y: 200 }
+    }
+  ]);
   
   const openWindow = (id: string, title: string, content: React.ReactNode) => {
-    // Check if window already exists
     if (windows.find(w => w.id === id)) return;
-    
-    // Calculate position to stack windows
     const offset = windows.length * 30;
     setWindows([...windows, {
       id,
@@ -31,44 +54,56 @@ export default function HomeScreen() {
     setWindows(windows.filter(w => w.id !== id));
   };
 
-  return (
-    <div className="relative min-h-screen w-full"
-    style={{
-      backgroundImage: `url(${'/assets/images/wallpaper.png'})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-    }}
-    >
-        <div className="absolute top-4 left-4 flex gap-8">
-            <div className="flex flex-col items-center cursor-pointer select-none" 
-                 onClick={() => openWindow('cv', 'CV-Resume', <div>CV Content</div>)}>
-                <span className="text-3xl">📄</span>
-                <span className="text-white bg-black bg-opacity-50 px-2 rounded mt-1">CV-Resume</span>
-            </div>
-            
-            <div className="flex flex-col items-center cursor-pointer select-none" 
-                 onClick={() => openWindow('projects', 'Projects', <div>Projects Content</div>)}>
-                <span className="text-3xl">💻</span>
-                <span className="text-white bg-black bg-opacity-50 px-2 rounded mt-1">Projects</span>
-            </div>
-            
-            <div className="flex flex-col items-center cursor-pointer select-none" 
-                 onClick={() => openWindow('about', 'About Me', <div>About Me Content</div>)}>
-                <span className="text-3xl">👤</span>
-                <span className="text-white bg-black bg-opacity-50 px-2 rounded mt-1">About Me</span>
-            </div>
-        </div>
+  const getContent = (id: string) => {
+    if (id === "cv") return <div>CV Content</div>;
+    if (id === "projects") return <Projects />;
+    if (id === "about") return <AboutMe />;
+    return null;
+  };
 
-        {windows.map((window) => (
-          <Window
-            key={window.id}
-            title={window.title}
-            defaultPosition={window.position}
-            onClose={() => closeWindow(window.id)}
-          >
-            {window.content}
-          </Window>
+  return (
+    <>
+      <div className="relative min-h-screen w-full"
+        style={{
+          backgroundImage: `url(${'/assets/images/wallpaper.png'})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {icons.map((icon) => (
+          <DesktopIcon
+            key={icon.id}
+            icon={icon.icon}
+            label={icon.label}
+            position={icon.position}
+            onDoubleClick={() => openWindow(icon.id, icon.label, getContent(icon.id))}
+            selected={selectedIcon === icon.id}
+            onClick={() => setSelectedIcon(icon.id)}
+            onDrag={(newPos) => {
+              setIcons((prev) =>
+                prev.map((i) =>
+                  i.id === icon.id ? { ...i, position: newPos } : i
+                )
+              );
+            }}
+          />
         ))}
-    </div>
+        
+        {windows.map((window) => {
+          return (
+            <Window
+              key={window.id}
+              title={window.title}
+              defaultPosition={window.position}
+              onClose={() => closeWindow(window.id)}
+              windowId={window.id}
+            >
+              {window.content}
+            </Window>
+          );
+        })}
+        <NavBar />
+      </div>
+    </>
   );
-} 
+}
