@@ -8,7 +8,7 @@ export default function OnboardingScreen({ onSelect }: { onSelect: () => void })
       backgroundPosition: 'center',
     }}
     >
-      <div className="flex flex-col justify-items-end w-1/2" >
+      <div className="flex flex-col items-end px-30 justify-items-end-safe w-1/2" >
         <img src="/assets/icons/windows_logo.png" alt="onboarding" className="w-60 h-auto" />
         <h2 className="text-2xl mb-8 text-white">To begin, click at my picture</h2>
       </div>
@@ -21,8 +21,8 @@ export default function OnboardingScreen({ onSelect }: { onSelect: () => void })
           </span>
         </button>
       <div className="flex flex-col px-4 justify-items-start w-1/2">
-        <span className="text-4xl font-mono text-white">Akira</span>
-        <span className="text-lg font-medium text-white">Intern fullstack developer</span>
+        <span className="text-4xl font-mono font-bold text-white">Akira</span>
+        <span className="text-lg font-sans text-white">Intern fullstack developer</span>
 
       </div>
       </div>

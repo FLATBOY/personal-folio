@@ -31,7 +31,6 @@ export default function NavBar() {
       <div
         className="flex items-center gap-2 px-4 py-1 rounded text-white font-mono text-base shadow-inner"
       >
-        <img src="/assets/icons/windows_logo.png" alt="icon" className="w-4 h-4" />
         <span>{time}</span>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 
 type DesktopIconProps = {
+    iconId: string;
     icon: string;
     label: string;
     position: { x: number; y: number };

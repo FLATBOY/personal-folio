@@ -73,6 +73,7 @@ export default function HomeScreen() {
         {icons.map((icon) => (
           <DesktopIcon
             key={icon.id}
+            iconId={icon.id}
             icon={icon.icon}
             label={icon.label}
             position={icon.position}
@@ -90,6 +91,7 @@ export default function HomeScreen() {
         ))}
         
         {windows.map((window) => {
+
           return (
             <Window
               key={window.id}
@@ -97,6 +99,7 @@ export default function HomeScreen() {
               defaultPosition={window.position}
               onClose={() => closeWindow(window.id)}
               windowId={window.id}
+
             >
               {window.content}
             </Window>
