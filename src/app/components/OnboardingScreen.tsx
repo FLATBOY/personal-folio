@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 export default function OnboardingScreen({ onSelect }: { onSelect: () => void }) {
   return (
     <div 
@@ -31,3 +32,4 @@ export default function OnboardingScreen({ onSelect }: { onSelect: () => void })
     </div>
   );
 } 
+
