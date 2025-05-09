@@ -2,6 +2,7 @@
 import Draggable from "react-draggable";
 import React, { ReactNode, useRef } from "react";
 import "../style.css";
+import Image from "next/image";
 
 interface WindowProps {
   title: string;
@@ -35,10 +36,10 @@ const Window = ({
           <span className="window-xp-title">{title}</span>
           <div className="window-xp-btn window-xp-controls">
             {onMinimize && (<button onClick={onMinimize} className="window-xp-btn">
-              <img src="/assets/icons/minimize.png" alt="minimize" className=" w-4 h-4" />
+              <Image src="/assets/icons/minimize.png" alt="minimize" className=" w-4 h-4" />
             </button>)}
             {onMaximize && (<button onClick={onMaximize} className="window-xp-btn">
-              <img src="/assets/icons/maximize.png" alt="maximize" className=" w-4 h-4" />
+              <Image src="/assets/icons/maximize.png" alt="maximize" className=" w-4 h-4" />
             </button>)}
             {onClose && (<button onClick={onClose} className="window-xp-close">
               <span >x</span>
