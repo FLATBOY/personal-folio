@@ -1,6 +1,6 @@
 // src/app/components/Window.tsx
 import { Rnd } from "react-rnd";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import "../../style.css";
 import Image from "next/image";
 
@@ -39,6 +39,14 @@ const Window = ({
   const [position, setPosition] = useState(defaultPosition);
   const minWidth = 300;
   const minHeight = 300;
+  const navbarHeight = 40; // Height of the navbar in pixels
+
+  // Ensure the window is positioned below the navbar
+  useEffect(() => {
+    if (position.y < navbarHeight) {
+      setPosition(prev => ({ ...prev, y: navbarHeight }));
+    }
+  }, [position.y]);
 
   const handleMaximize = () => {
     setMaximized((prev) => !prev);
@@ -48,7 +56,7 @@ const Window = ({
   // Get window style based on maximized state
   const getWindowStyle = () => {
     return {
-      zIndex,
+      zIndex: zIndex < 50 ? zIndex : 49, // Ensure window z-index is always below navbar (z-index: 50)
       boxShadow: "0 5px 15px rgba(0, 0, 0, 0.2)",
       border: "1px solid rgba(0, 0, 0, 0.1)",
       borderRadius: "8px",
@@ -62,10 +70,14 @@ const Window = ({
   return (
     <Rnd
       style={getWindowStyle()}
-      size={maximized ? { width: '100vw', height: '100vh' } : { width: size.width, height: size.height }}
-      position={maximized ? { x: 0, y: 0 } : position}
+      size={maximized ? { width: '100vw', height: `calc(100vh - ${navbarHeight}px)` } : { width: size.width, height: size.height }}
+      position={maximized ? { x: 0, y: navbarHeight } : position}
       onDragStop={(e, d) => {
-        if (!maximized) setPosition({ x: d.x, y: d.y });
+        if (!maximized) {
+          // Ensure window doesn't go above the navbar
+          const newY = Math.max(d.y, navbarHeight);
+          setPosition({ x: d.x, y: newY });
+        }
       }}
       onResizeStop={(e, direction, ref, delta, position) => {
         if (!maximized) {
@@ -73,7 +85,9 @@ const Window = ({
             width: parseInt(ref.style.width),
             height: parseInt(ref.style.height),
           });
-          setPosition(position);
+          // Ensure window doesn't go above the navbar
+          const newY = Math.max(position.y, navbarHeight);
+          setPosition({ ...position, y: newY });
         }
       }}
       minWidth={minWidth}
@@ -83,6 +97,7 @@ const Window = ({
       dragHandleClassName="modern-window-title-bar"
       className={`modern-window${isActive ? " active" : ""}`}
       onClick={onClick}
+      bounds="parent" // Restrict window movement to parent container
     >
       <div className="modern-window-title-bar">
         {/* Left: Window icon */}
@@ -91,9 +106,8 @@ const Window = ({
             <Image 
               src={icon} 
               alt={`${title} icon`} 
-              width={20} 
-              height={20} 
-              style={{ objectFit: 'contain' }}
+              width={30} 
+              height={30} 
             />
           ) : (
             <div className="window-icon-placeholder"></div>

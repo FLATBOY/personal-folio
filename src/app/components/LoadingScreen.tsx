@@ -3,7 +3,7 @@ export default function LoadingScreen() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-screen bg-black text-white backdrop-blur-md"
     style={{
-      backgroundImage: `url(${'/assets/images/wallpaper.webp'})`,
+      backgroundImage: `url(${'/assets/images/wallpaper.png'})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backdropFilter: 'blur(300px)',

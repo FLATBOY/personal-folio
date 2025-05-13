@@ -19,7 +19,7 @@ export default function NavBar() {
   }, []);
 
   return (
-    <div className="fixed w-full h-10 flex items-center justify-between px-0 bg-black z-50 top-0 left-0">
+    <div className="fixed w-full h-10 flex items-center justify-between px-0 bg-black z-[9999] top-0 left-0">
       {/* Left: System icon and title */}
       <div className="flex items-center gap-2 pl-4 min-w-48">
         <Image 

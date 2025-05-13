@@ -58,11 +58,21 @@ export default function HomeScreen() {
   const openWindow = (id: string, title: string, content: React.ReactNode) => {
     if (windows.find(w => w.id === id)) return;
     
-    // Clamp window size to fit viewport
-    const maxWidth = Math.min(1200, window.innerWidth - 48);
-    const maxHeight = Math.min(600, window.innerHeight - 48);
-    const width = maxWidth;
-    const height = maxHeight;
+    // Set window size based on content type
+    let width, height;
+    
+    if (id === "about") {
+      width = 800;
+      height = 600;
+    } else if (id === "cv") {
+      // PDF dimensions (A4 aspect ratio with reasonable size)
+      width = 595;  // A4 width in points
+      height = 842; // A4 height in points
+    } else {
+      // Default size for other windows
+      width = Math.min(1200, window.innerWidth - 48);
+      height = Math.min(600, window.innerHeight - 48);
+    }
 
     // Smart cascade positioning
     const baseX = (window.innerWidth - width) / 2;
@@ -118,7 +128,15 @@ export default function HomeScreen() {
   };
 
   const getContent = (id: string) => {
-    if (id === "cv") return <iframe src="/assets/images/CV-RESUME.pdf" width="100%" height="100%" />;
+    if (id === "cv") return (
+      <iframe 
+        src="/assets/Images/CV-RESUME.pdf" 
+        width="100%" 
+        height="100%" 
+        style={{ border: 'none' }}
+        title="CV Resume"
+      />
+    );
     if (id === "projects") return <Projects />;
     if (id === "about") return <AboutMe />;
     return null;
@@ -128,9 +146,9 @@ export default function HomeScreen() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center min-h-screen w-full"
+      <div className="flex flex-col items-center justify-center min-h-screen w-full pt-10"
         style={{
-          backgroundImage: `url(${'/assets/images/wallpaper.webp'})`,
+          backgroundImage: `url(${'/assets/images/wallpaper.png'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -153,6 +171,19 @@ export default function HomeScreen() {
           // Find the matching icon for this window
           const windowIcon = icons.find(i => i.id === window.id)?.icon;
           
+          // Determine window dimensions based on window type
+          let windowWidth = 400;
+          let windowHeight = 400;
+          
+          if (window.id === "about") {
+            windowWidth = 800;
+            windowHeight = 600;
+          } else if (window.id === "cv") {
+            // PDF dimensions (A4 aspect ratio with reasonable size)
+            windowWidth = 595;  // A4 width in points
+            windowHeight = 842; // A4 height in points
+          }
+          
           return (
             <Window
               key={window.id}
@@ -160,8 +191,8 @@ export default function HomeScreen() {
               defaultPosition={window.position}
               onClose={() => closeWindow(window.id)}
               windowId={window.id}
-              width={window.id === "about" ? 800 : 400}
-              height={window.id === "about" ? 600 : 400}
+              width={windowWidth}
+              height={windowHeight}
               zIndex={window.zIndex}
               isActive={activeWindowId === window.id}
               onClick={() => activateWindow(window.id)}
