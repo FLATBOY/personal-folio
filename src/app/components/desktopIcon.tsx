@@ -4,7 +4,7 @@ type DesktopIconProps = {
     iconId: string;
     icon: string;
     label: string;
-    position: { x: number; y: number };
+    position?: { x: number; y: number };
     onDoubleClick: () => void;
     selected?: boolean;
     onClick?: () => void;
@@ -15,7 +15,7 @@ const DesktopIcon: React.FC<DesktopIconProps> = ({ icon, label, position, onDoub
     const iconRef = useRef<HTMLDivElement>(null);
 
     const handleMouseDown = (e: React.MouseEvent) => {
-        if (!iconRef.current || !onDrag) return;
+        if (!iconRef.current || !onDrag || !position) return;
         const startX = e.clientX;
         const startY = e.clientY;
         const origX = position.x;
@@ -39,16 +39,20 @@ const DesktopIcon: React.FC<DesktopIconProps> = ({ icon, label, position, onDoub
     return (
         <div
             ref={iconRef}
-            style={{
+            style={position ? {
                 position: "absolute",
                 left: position.x,
                 top: position.y,
                 cursor: "pointer",
                 zIndex: selected ? 2 : 1,
+            } : {
+                position: "relative",
+                cursor: "pointer",
+                zIndex: selected ? 2 : 1,
             }}
             onDoubleClick={onDoubleClick}
             onClick={onClick}
-            onMouseDown={handleMouseDown}
+            onMouseDown={position ? handleMouseDown : undefined}
             tabIndex={0}
             className={selected ? "flex flex-col items-center justify-items-center" : "flex flex-col items-center justify-items-center"}
         >
