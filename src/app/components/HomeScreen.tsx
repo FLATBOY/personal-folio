@@ -1,8 +1,8 @@
 // src/app/components/HomeScreen.tsx
 "use client";
 
-import { useState } from "react";
-import Window from "./Window";
+import { useState, useEffect } from "react";
+import Window from "./Window/Window";
 import NavBar from "./NavBar";
 import DesktopIcon from "./desktopIcon";
 import AboutMe from "./aboutMe";
@@ -14,6 +14,7 @@ interface WindowState {
   content: React.ReactNode;
   position: { x: number; y: number };
   zIndex: number;
+  icon?: string;
 }
 
 export default function HomeScreen({setActiveTitle}: {setActiveTitle: (title: string) => void}) {
@@ -41,23 +42,50 @@ export default function HomeScreen({setActiveTitle}: {setActiveTitle: (title: st
     }
   ]);
   
+  // Disable scrolling when component mounts
+  useEffect(() => {
+    // Save original styles
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    
+    // Disable scroll
+    document.body.style.overflow = 'hidden';
+    
+    // Restore original styles when component unmounts
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, []);
+  
   const openWindow = (id: string, title: string, content: React.ReactNode) => {
     if (windows.find(w => w.id === id)) return;
+    
     // Clamp window size to fit viewport
     const maxWidth = Math.min(1200, window.innerWidth - 48);
     const maxHeight = Math.min(600, window.innerHeight - 48);
     const width = maxWidth;
     const height = maxHeight;
 
-    // Cascade offset
-    const offset = 24 * windows.length;
-    let x = (window.innerWidth - width) / 2 + offset;
-    let y = (window.innerHeight - height) / 2 + offset;
-
-    // Clamp to keep margin from edge
+    // Smart cascade positioning
+    const baseX = (window.innerWidth - width) / 2;
+    const baseY = (window.innerHeight - height) / 2;
+    
+    // Limit maximum cascade to prevent going off-screen
+    // We'll use modulo to reset positions after a certain number of windows
+    const maxCascadeSteps = 5;
+    const offsetStep = 30;
+    const cascadeIndex = windows.length % maxCascadeSteps;
+    const offsetX = cascadeIndex * offsetStep;
+    const offsetY = cascadeIndex * offsetStep;
+    
+    // Calculate position with limited cascade offset
+    let x = baseX + offsetX;
+    let y = baseY + offsetY;
+    
+    // Ensure window is always within visible bounds
     x = Math.max(24, Math.min(x, window.innerWidth - width - 24));
     y = Math.max(24, Math.min(y, window.innerHeight - height - 24));
 
+    const icon = icons.find(i => i.id === id);
     const maxZ = windows.length > 0 ? Math.max(...windows.map(w => w.zIndex)) : 1000;
     setWindows([
       ...windows,
@@ -91,7 +119,7 @@ export default function HomeScreen({setActiveTitle}: {setActiveTitle: (title: st
   };
 
   const getContent = (id: string) => {
-    if (id === "cv") return <div>CV Content</div>;
+    if (id === "cv") return <iframe src="/assets/images/CV-RESUME.pdf" width="100%" height="100%" />;
     if (id === "projects") return <Projects />;
     if (id === "about") return <AboutMe />;
     return null;
@@ -135,6 +163,7 @@ export default function HomeScreen({setActiveTitle}: {setActiveTitle: (title: st
               zIndex={window.zIndex}
               isActive={activeWindowId === window.id}
               onClick={() => activateWindow(window.id)}
+              icon={window.icon}
             >
               {window.content}
             </Window>
