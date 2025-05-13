@@ -7,8 +7,6 @@ import NavBar from "./components/NavBar";
 
 export default function Home() {
   const [screen, setScreen] = useState<'loading' | 'onboarding' | 'home'>('loading');
-  const [activeTitle, setActiveTitle] = useState("Activities");
-
 
   useEffect(() => {
     if (screen === 'loading') {
@@ -20,8 +18,8 @@ export default function Home() {
   if (screen === 'loading') return <LoadingScreen />;
   return (
     <>
-    <NavBar />
-    <HomeScreen setActiveTitle={setActiveTitle}/>;
-  </>
+      <NavBar />
+      <HomeScreen />
+    </>
   )
 }

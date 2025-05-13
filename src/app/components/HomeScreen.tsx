@@ -3,7 +3,6 @@
 
 import { useState, useEffect } from "react";
 import Window from "./Window/Window";
-import NavBar from "./NavBar";
 import DesktopIcon from "./desktopIcon";
 import AboutMe from "./Pages/About/aboutMe";
 import Projects from "./Pages/Projects";  
@@ -17,11 +16,11 @@ interface WindowState {
   icon?: string;
 }
 
-export default function HomeScreen({setActiveTitle}: {setActiveTitle: (title: string) => void}) {
+export default function HomeScreen() {
   const [windows, setWindows] = useState<WindowState[]>([]);
   const [activeWindowId, setActiveWindowId] = useState<string | null>(null);
   const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
-  const [icons, setIcons] = useState([
+  const icons = [
     {
       id: 'cv',
       icon: '/assets/icons/cv.png',
@@ -40,7 +39,7 @@ export default function HomeScreen({setActiveTitle}: {setActiveTitle: (title: st
       label: 'About Me',
       position: { x: 40, y: 200 }
     }
-  ]);
+  ];
   
   // Disable scrolling when component mounts
   useEffect(() => {
@@ -85,7 +84,9 @@ export default function HomeScreen({setActiveTitle}: {setActiveTitle: (title: st
     x = Math.max(24, Math.min(x, window.innerWidth - width - 24));
     y = Math.max(24, Math.min(y, window.innerHeight - height - 24));
 
-    const icon = icons.find(i => i.id === id);
+    const iconObj = icons.find(i => i.id === id);
+    const iconPath = iconObj ? iconObj.icon : undefined;
+    
     const maxZ = windows.length > 0 ? Math.max(...windows.map(w => w.zIndex)) : 1000;
     setWindows([
       ...windows,
@@ -95,10 +96,10 @@ export default function HomeScreen({setActiveTitle}: {setActiveTitle: (title: st
         content,
         position: { x, y },
         zIndex: maxZ + 1,
+        icon: iconPath,
       },
     ]);
     setActiveWindowId(id);
-    setActiveTitle(title);
   };
 
   const closeWindow = (id: string) => {
@@ -114,8 +115,6 @@ export default function HomeScreen({setActiveTitle}: {setActiveTitle: (title: st
       )
     );
     setActiveWindowId(id);
-    const win = windows.find(w => w.id === id);
-    if (win) setActiveTitle(win.title);
   };
 
   const getContent = (id: string) => {
@@ -151,6 +150,9 @@ export default function HomeScreen({setActiveTitle}: {setActiveTitle: (title: st
         </div>
         {/* Windows */}
         {windows.map((window) => {
+          // Find the matching icon for this window
+          const windowIcon = icons.find(i => i.id === window.id)?.icon;
+          
           return (
             <Window
               key={window.id}
@@ -163,7 +165,7 @@ export default function HomeScreen({setActiveTitle}: {setActiveTitle: (title: st
               zIndex={window.zIndex}
               isActive={activeWindowId === window.id}
               onClick={() => activateWindow(window.id)}
-              icon={window.icon}
+              icon={windowIcon}
             >
               {window.content}
             </Window>

@@ -85,9 +85,19 @@ const Window = ({
       onClick={onClick}
     >
       <div className="modern-window-title-bar">
-        {/* Left: White circle */}
+        {/* Left: Window icon */}
         <div className="modern-window-circle">
-          {icon && <Image src={icon} alt="Icon" width={16} height={16} />}
+          {icon ? (
+            <Image 
+              src={icon} 
+              alt={`${title} icon`} 
+              width={20} 
+              height={20} 
+              style={{ objectFit: 'contain' }}
+            />
+          ) : (
+            <div className="window-icon-placeholder"></div>
+          )}
         </div>
 
         {/* Center: Title */}

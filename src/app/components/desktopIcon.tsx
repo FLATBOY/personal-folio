@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import Image from 'next/image';
 
 type DesktopIconProps = {
     iconId: string;
@@ -56,7 +57,7 @@ const DesktopIcon: React.FC<DesktopIconProps> = ({ icon, label, position, onDoub
             tabIndex={0}
             className={selected ? "flex flex-col items-center justify-items-center" : "flex flex-col items-center justify-items-center"}
         >
-            <img src={icon} alt={label} className="w-10 h-10" />
+            <Image src={icon} alt={label} width={10} height={10} />
             <span className={selected ? "text-white  bg-[#164DBC] bg-opacity-50 px-2 rounded mt-1 ": "text-white  bg-opacity-50  object-cover shadow-2xl px-2 rounded mt-1"}>{label}</span>
         </div>
     )

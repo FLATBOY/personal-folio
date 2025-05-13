@@ -82,7 +82,7 @@ const AboutMe: React.FC = () => {
           <ul className='aboutList mt-6'>
           <li>
             <span role="img" aria-label="wave">👋</span>
-            <span>Hi, I'm a self-taught software engineer</span>
+            <span>Hi, I&apos;m a self-taught software engineer</span>
           </li>
           <li>
             <span role="img" aria-label="eyes">👀</span>
@@ -90,7 +90,7 @@ const AboutMe: React.FC = () => {
           </li>
           <li>
             <span role="img" aria-label="seedling">🌱</span>
-            <span>I'm studying anything related to Software Development and some ML/AI (for my own product)</span>
+            <span>I&apos;m studying anything related to Software Development and some ML/AI (for my own product)</span>
           </li>
         </ul>
         </div>
@@ -133,7 +133,7 @@ const AboutMe: React.FC = () => {
         <ul className='aboutList'>
           <li>
             <span role="img" aria-label="rocket">🚀</span>
-            <span>I'm building my own iOS application product. Looking forward to bring it to user.</span>
+            <span>I&apos;m building my own iOS application product. Looking forward to bring it to user.</span>
           </li>
           <li>
             <span role="img" aria-label="globe">🌐</span>
