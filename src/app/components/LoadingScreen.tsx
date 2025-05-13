@@ -6,12 +6,12 @@ export default function LoadingScreen() {
       backgroundImage: `url(${'/assets/images/wallpaper.png'})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      backdropFilter: 'blur(300px)',
+      backdropFilter: 'blur(20px)',
     }}
     >
       <Image 
-        src="/assets/images/Akira.webp" 
-        alt="logo" 
+        src="/assets/images/Akira.png" 
+        alt="user-image" 
         width={80} 
         height={80} 
         className="w-80 h-auto" />
