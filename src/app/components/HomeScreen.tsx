@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 import Window from "./Window/Window";
 import NavBar from "./NavBar";
 import DesktopIcon from "./desktopIcon";
-import AboutMe from "./aboutMe";
-import Projects from "./Projects";  
+import AboutMe from "./Pages/About/aboutMe";
+import Projects from "./Pages/Projects";  
 
 interface WindowState {
   id: string;
@@ -158,8 +158,8 @@ export default function HomeScreen({setActiveTitle}: {setActiveTitle: (title: st
               defaultPosition={window.position}
               onClose={() => closeWindow(window.id)}
               windowId={window.id}
-              width={400}
-              height={400}
+              width={window.id === "about" ? 800 : 400}
+              height={window.id === "about" ? 600 : 400}
               zIndex={window.zIndex}
               isActive={activeWindowId === window.id}
               onClick={() => activateWindow(window.id)}

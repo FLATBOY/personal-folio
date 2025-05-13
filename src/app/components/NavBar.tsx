@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 
-export default function NavBar({title = "Activities"}: {title?: string}) {
+export default function NavBar() {
   const [time, setTime] = useState<string>("");
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function NavBar({title = "Activities"}: {title?: string}) {
           width={16} 
           height={16} 
           className="w-4 h-4 m-1" />
-        <span className="text-white font-bold text-base tracking-wide">Activities</span>
+        <span className="text-white font-bold text-base tracking-wide">Akira</span>
       </div>
       {/* Center: Date & Time */}
       <div className="flex-1 flex justify-center">

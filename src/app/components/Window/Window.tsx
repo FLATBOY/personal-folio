@@ -37,7 +37,7 @@ const Window = ({
   const [maximized, setMaximized] = useState(false);
   const [size, setSize] = useState({ width, height });
   const [position, setPosition] = useState(defaultPosition);
-  const minWidth = 600;
+  const minWidth = 300;
   const minHeight = 300;
 
   const handleMaximize = () => {
@@ -55,6 +55,7 @@ const Window = ({
       overflow: "hidden",
       display: "flex",
       flexDirection: "column" as const,
+      backdropFilter: "blur(5px)",
     };
   };
 

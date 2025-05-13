@@ -1,0 +1,144 @@
+.aboutContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  background-color: #1a1e23;
+  color: #e4e6eb;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.profileInfo h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.profileInfo p {
+  font-size: 1rem;
+  color: #a0a0a0;
+}
+
+.divider {
+  height: 1px;
+  background-color: #2d3748;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle svg {
+  margin-right: 0.5rem;
+}
+
+.aboutList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.aboutList li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.aboutList li svg {
+  margin-right: 0.5rem;
+  min-width: 20px;
+  margin-top: 0.25rem;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.categoryCell {
+  background-color: #1a1e23;
+  padding: 0.75rem;
+  font-weight: 500;
+}
+
+.techCell {
+  background-color: #1a1e23;
+  padding: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.techBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.contactInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.contactInfo a {
+  color: #3182ce;
+  text-decoration: none;
+}
+
+.contactInfo a:hover {
+  text-decoration: underline;
+}
+
+/* Badge colors */
+.html { background-color: #e34c26; color: white; }
+.css { background-color: #264de4; color: white; }
+.react { background-color: #61dafb; color: black; }
+.vue { background-color: #42b883; color: white; }
+.typescript { background-color: #007acc; color: white; }
+.javascript { background-color: #f7df1e; color: black; }
+.python { background-color: #3776ab; color: white; }
+.nodejs { background-color: #339933; color: white; }
+.go { background-color: #00add8; color: white; }
+.express { background-color: #000000; color: white; }
+.mongodb { background-color: #47a248; color: white; }
+.redis { background-color: #dc382d; color: white; }
+.postgresql { background-color: #336791; color: white; }
+.swift { background-color: #fa7343; color: white; }
+.docker { background-color: #2496ed; color: white; }
+.aws { background-color: #ff9900; color: black; }
+.vscode { background-color: #007acc; color: white; }
+.cursor { background-color: #000000; color: white; }
+.linux { background-color: #fcc624; color: black; }
+.git { background-color: #f05032; color: white; }
+.markdown { background-color: #000000; color: white; } 
