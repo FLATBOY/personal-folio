@@ -65,7 +65,7 @@ const AboutMe: React.FC = () => {
       <div className='header'>
         <div className='avatar'>
           <Image 
-            src="/assets/Images/Akira.png" 
+            src="/assets/Images/avatar.png" 
             alt="Profile" 
             fill
             priority
