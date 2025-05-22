@@ -90,7 +90,7 @@ const AboutMe: React.FC = () => {
           </li>
           <li>
             <span role="img" aria-label="seedling">🌱</span>
-            <span>I&apos;m studying anything related to Software Development and some ML/AI (for my own product)</span>
+            <span>I&apos;m studying anything related to Software Development and Cloud Engineering (for my own product)</span>
           </li>
         </ul>
         </div>
@@ -138,6 +138,9 @@ const AboutMe: React.FC = () => {
           <li>
             <span role="img" aria-label="globe">🌐</span>
             <span>How to reach me ... on my email: <a className='text-blue-500 underline' href="mailto:tgminh1995@gmail.com">tgminh1995@gmail.com</a></span>
+            <span> </span>
+            <span> </span>
+            <span> </span>
           </li>
         </ul>
       </div>
