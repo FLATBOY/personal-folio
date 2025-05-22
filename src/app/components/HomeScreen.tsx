@@ -148,7 +148,7 @@ export default function HomeScreen() {
     <>
       <div className="flex flex-col items-center justify-center min-h-screen w-full pt-10"
         style={{
-          backgroundImage: `url(${'/assets/images/desktop-screen.png'})`,
+          backgroundImage: `url(${'/assets/images/wall.jpg'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

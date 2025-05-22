@@ -1,9 +1,11 @@
+import React from 'react';
 import Image from "next/image";
+
 export default function LoadingScreen() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-screen bg-black text-white backdrop-blur-md"
     style={{
-      backgroundImage: `url(${'/assets/images/desktop-screen.png'})`,
+      backgroundImage: `url(${'/assets/images/wall.jpg'})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backdropFilter: 'blur(20px)',
