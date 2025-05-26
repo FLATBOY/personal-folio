@@ -1,5 +1,7 @@
+
 import React, { useRef } from 'react';
 import Image from 'next/image';
+
 
 type DesktopIconProps = {
     iconId: string;
@@ -38,6 +40,7 @@ const DesktopIcon: React.FC<DesktopIconProps> = ({ icon, label, position, onDoub
     };
 
     return (
+
         <div
             ref={iconRef}
             style={position ? {

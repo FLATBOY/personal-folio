@@ -70,7 +70,7 @@ const Window = ({
   return (
     <Rnd
       style={getWindowStyle()}
-      size={maximized ? { width: '100vw', height: `calc(100vh - ${navbarHeight}px)` } : { width: size.width, height: size.height }}
+      size={maximized ? { width: '100vw', height: `100vh` } : { width: size.width, height: size.height }}
       position={maximized ? { x: 0, y: navbarHeight } : position}
       onDragStop={(e, d) => {
         if (!maximized) {
