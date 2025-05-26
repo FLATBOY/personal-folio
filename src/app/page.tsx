@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import LoadingScreen from "./components/LoadingScreen";
 import HomeScreen from "./components/HomeScreen";
 import NavBar from "./components/NavBar";
+<<<<<<< HEAD
 import WindowManager from './components/WindowManager';
+=======
+import WindowManager, { WindowData } from './components/WindowManager';
+>>>>>>> 01cfbf8f4879c26d333d80dad81f3eff885bb120
 
 export default function Home() {
   const [screen, setScreen] = useState<'loading' | 'onboarding' | 'home'>('loading');
