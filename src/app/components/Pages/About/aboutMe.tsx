@@ -78,7 +78,7 @@ const AboutMe: React.FC = () => {
         </div>
         <div className='profileInfo font-mono flex flex-col'>
           <h1>Minh Tran</h1>
-          <p>Software Engineer</p>
+          <p>Software Engineer Intern</p>
           <ul className='aboutList mt-6'>
           <li>
             <span role="img" aria-label="wave">👋</span>
