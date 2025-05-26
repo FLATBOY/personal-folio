@@ -5,14 +5,14 @@ export default function LoadingScreen() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-screen bg-black text-white backdrop-blur-md"
     style={{
-      backgroundImage: `url(${'/assets/images/my_desktop.png'})`,
+      backgroundImage: `url(${'/assets/Images/my_desktop.png'})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backdropFilter: 'blur(20px)',
     }}
     >
       <Image 
-        src="/assets/images/avatar.png" 
+        src="/assets/Images/avatar.png" 
         alt="Profile" 
         width={80} 
         height={80} 
