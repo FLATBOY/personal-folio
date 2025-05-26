@@ -90,7 +90,7 @@ const AboutMe: React.FC = () => {
           </li>
           <li>
             <span role="img" aria-label="seedling">🌱</span>
-            <span>I&apos;m studying anything related to Software Development and Cloud Engineering (for my own product)</span>
+            <span>I&apos;m studying technologies related to Software Development and Cloud Engineering (to support my own product in the future)</span>
           </li>
         </ul>
         </div>
