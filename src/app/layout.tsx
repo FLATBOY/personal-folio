@@ -15,6 +15,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Akira Computer",
   description: "Akira Computer",
+  openGraph: {
+    title: "Akira Computer",
+    description: "Akira's Portfolio OS",
+    images: [
+      {
+        url: "/assets/Images/thumbnail.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Akira Computer",
+      },
+    ],
+    type: "website",
+    locale: "en_US",
+  },
 };
 
 export default function RootLayout({

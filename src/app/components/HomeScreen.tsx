@@ -130,7 +130,7 @@ export default function HomeScreen() {
   const getContent = (id: string) => {
     if (id === "cv") return (
       <iframe 
-        src="/assets/Images/CV-RESUME.pdf" 
+        src="/assets/Images/TRAN-QUANG-MINH_CV-RESUME.pdf" 
         width="100%" 
         height="100%" 
         style={{ border: 'none' }}
@@ -142,13 +142,11 @@ export default function HomeScreen() {
     return null;
   };
 
-  
-
   return (
     <>
       <div className="flex flex-col items-center justify-center min-h-screen w-full pt-10"
         style={{
-          backgroundImage: `url(${'/assets/images/wall.jpg'})`,
+          backgroundImage: `url(${'/assets/images/my_desktop.png'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
